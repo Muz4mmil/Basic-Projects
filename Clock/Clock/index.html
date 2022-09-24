@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clock</title>
+
+    <style>
+    
+    *{
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        transition: .3s;
+    }
+
+    :root{
+        --bgr : linear-gradient(rgba(255, 230, 0, 0.171), white, rgb(184, 223, 255));
+        --fgr : white;
+        --font1 : rgb(61, 61, 61);
+        --font2: black;
+    }
+    
+    .darkmode{
+        --bgr : linear-gradient( to bottom right,rgb(18, 2, 26),  rgb(5, 2, 32));
+        --fgr : rgb(17, 19, 24);
+        --font1: rgb(125, 125, 125);
+        --font2: rgb(209, 209, 209);
+    }
+    .darkmode img{
+        filter: none;
+    }
+
+    body{
+        display: flex;
+        height: 100vh;
+        font-family: sans-serif;
+        /* background: linear-gradient(rgba(255, 230, 0, 0.171), white, rgb(184, 223, 255)) ; */
+        background: var(--bgr);
+    }
+
+    input[type="checkbox"] {
+        position: fixed;
+        z-index: 1;
+        right: 20px;
+        top: 20px;
+        /* visibility: hidden; */
+    }
+
+    input[type="checkbox"]:checked ~ *{
+        filter: invert(1);
+    }
+
+    img{
+        position: fixed;
+        right: 20px;
+        top: 20px;
+        width: 40px;
+        cursor: pointer;
+        filter: invert();
+    }
+    
+    .container{
+        border: 1px solid rgba(61, 61, 61, 0.459);;
+        border-radius: 15px;
+        text-align: center;
+        font-weight: bold;
+        margin: auto;
+        padding: 20px;
+        box-shadow: 5px 5px 10px 1px rgba(0, 0, 0, 0.5);
+        background: var(--fgr);
+    }
+    
+    .time{
+        font-size: 30px;
+        margin-top: 10px;
+        color: var(--font2);
+    }
+    
+    .time span#hm{
+        font-size: 50px;
+        color: var(--font2);
+    }
+    
+    .time span#sec{
+        color: var(--font1);
+        font-size: 25px;
+    }
+    
+    .time span#ampm{
+        font-size: 20px;
+    }
+
+    .date{
+        color: var(--font1);
+    }
+    
+    .date span{
+        color: var(--font2);
+        font-size: 25px;
+    }
+    
+    .credit{
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        margin-right: 15px;
+        margin-bottom: 10px;
+        font-size: 14px ;
+        font-weight: bold;
+        color: var(--font1);
+    }
+
+    a{
+        color: var(--font1);
+    }
+    </style>
+
+
+    <script>
+        let a;
+        let date;
+        let time;
+        var days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thirsday', 'Friday', 'Saturday'];
+        var month = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+        setInterval(() => {
+            a = new Date();
+            
+            dig = a.getHours() < 10 ? (a.getHours() % 12 || 12) : ("0" + (a.getHours() % 12 || 12)).slice(-2);
+            min = a.getMinutes() < 10 ? ("0" + a.getMinutes()).slice(-2) : a.getMinutes() ;
+            
+            hm = dig + ":" + min;
+            sec = a.getSeconds() < 10 ? ("0" + a.getSeconds()).slice(-2) : a.getSeconds();
+            ampm = a.getHours() >= 12 ? 'PM' : 'AM';
+            date = days[a.getDay()] + ", " + month[a.getMonth()] + " " + a.getDate()  + " " +  a.getFullYear();
+            document.getElementById('hm').innerHTML = hm;
+            document.getElementById('sec').innerHTML = ":" + sec;
+            document.getElementById('date').innerHTML = date;
+            document.getElementById('ampm').innerHTML = ampm;
+        }, 1000);
+
+        function dark(){
+            document.body.classList.toggle("darkmode");
+        }
+    </script>
+    
+
+</head>
+<body>
+    <img src="https://cdn-icons-png.flaticon.com/512/5262/5262027.png" alt="Dark/Light" class="dark" onclick="dark()">
+    
+    <div class="container">
+        <div class="date">Today is <span id="date"></span></div>
+        <div class="time">Its <span id="hm"></span><span id="sec"></span> <span id="ampm"></span></div>
+    </div>
+
+    <div class="credit">- <a href="https://muz4mmil.github.io/" target="_blank">Made by Muzammil</a></div>
+</body>
+</html>
