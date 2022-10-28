@@ -1,0 +1,149 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+#game{
+    width: 500px;
+    height: 200px;
+    border: 1px solid black;
+    margin: auto;
+    overflow: hidden;
+}
+
+.btn{
+    width: 70px;
+    height: 30px;
+    background: rgb(201, 201, 201);
+    text-align: center;
+    align-items: center;
+    line-height: 30px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 1px 5px black;
+}
+
+.btn.play{
+    margin: auto;
+}
+
+#char{
+    width: 30px;
+    height: 50px;
+    position: relative;
+    top: 150px;
+    left: 50px;
+    overflow: visible;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+}
+#char img{
+    height: 125px;
+    width: 80px;
+}
+
+
+.anim{
+    animation: jump .5s;
+}
+
+@keyframes jump {
+    0%{top: 150px;}
+    33%{top: 90px;}
+    66%{top: 90px;}
+    100%{top: 150px;}
+}
+
+
+#block{
+    width: 20px;
+    height: 40px;
+    position: relative;
+    top: 110px;
+    left: 480px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+}
+#block img{
+    height: 50px;
+}
+
+
+.speed0{
+    animation: block 1.5s infinite;    
+}
+.speed1{
+    animation: block 1.2s infinite;    
+}
+.speed2{
+    animation: block 1s infinite;    
+}
+@keyframes block{
+    0%{left:480px;}
+    100%{left:-40px;}
+}
+.bar{
+    width: 500px;
+    display: flex;
+    margin: auto;
+    justify-content: space-between;
+    padding: 10px 0;
+}
+.board{
+    display: flex;
+    font-size: 25px;
+    font-weight: bold;
+}
+.score{
+    margin-left: 5px;
+}
+
+.bgr{
+    height: 200px;
+    width: 500px;
+    position: absolute;
+    z-index: -10;
+    overflow: hidden;
+}
+.bgr img{
+    height: 100%;
+    width: 100%;
+    filter: brightness(1.4);
+}
+.cloud{
+    display: none;
+    width: 130%;
+    position: absolute;
+    top: 0;
+    justify-content: space-between;
+}
+
+.cloud img{
+    height: 150px;
+}
+
+.cloud img:nth-child(2){
+    
+    margin-left: 40px;
+}
+@keyframes cloud{
+    0%{left:100%;}
+    100%{left:-130%;}
+}
+
+.credit{
+    position: absolute;
+    bottom: 5px;
+    right: 10px;
+}
+.credit a{
+    text-decoration: none;
+    font-family: sans-serif;
+    font-weight: bold;
+    color: grey;
+    font-size: 12px;
+}
